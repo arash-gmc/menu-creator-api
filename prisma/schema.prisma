@@ -14,24 +14,17 @@ datasource db {
 }
 
 model Restaurant {
-  id         String     @id @default(cuid())
-  urlname    String     @unique
-  realname   String
-  categories Category[]
-}
-
-model Category {
-  id           String     @id @default(cuid())
-  name         String
-  restaurantId String
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
-  items        Item[]
+  id       String @id @default(cuid())
+  urlname  String @unique
+  realname String
+  items    Item[]
 }
 
 model Item {
-  id         String   @id @default(cuid())
-  name       String
-  price      Int
-  categoryId String
-  category   Category @relation(fields: [categoryId], references: [id])
+  id           String     @id @default(cuid())
+  name         String
+  price        Int
+  category     String
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
 }

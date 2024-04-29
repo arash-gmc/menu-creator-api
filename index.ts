@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import restaurants from "./restaurants";
-import category from "./categories";
+import items from "./items";
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use("/hello", (req: Request, res: Response) => {
 
 app.use("/api/restaurants", restaurants);
 
-app.use("/api/category", category);
+app.use("/api/items", items);
 
 app.listen(5000, () => {
   console.log("listening to port 5000...");
