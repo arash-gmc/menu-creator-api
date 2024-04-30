@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
-import restaurants from "./routes/restaurants";
-import items from "./routes/items";
+import restaurants from "./routes";
+import items from "./routes";
+import applyRoutes from "./routes";
 
 const app = express();
 
@@ -10,9 +11,7 @@ app.use("/hello", (req: Request, res: Response) => {
   res.send("Hello Word");
 });
 
-app.use("/api/restaurants", restaurants);
-
-app.use("/api/items", items);
+applyRoutes(app);
 
 app.listen(5000, () => {
   console.log("listening to port 5000...");
