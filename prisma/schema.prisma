@@ -14,10 +14,13 @@ datasource db {
 }
 
 model Restaurant {
-  id       String @id @default(cuid())
-  urlname  String @unique
-  realname String
-  items    Item[]
+  id          String  @id @default(cuid())
+  name        String  @unique
+  displayName String
+  email       String? @unique
+  password    String
+  instagramId String?
+  items       Item[]
 }
 
 model Item {

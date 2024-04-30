@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import restaurants from "./restaurants";
-import items from "./items";
+import restaurants from "./routes/restaurants";
+import items from "./routes/items";
 
 const app = express();
 
