@@ -14,7 +14,7 @@ const login = (router: Router) => {
       where: { name: nameOrEmail },
     });
     if (!restaurant)
-      await prisma.restaurant.findUnique({ where: { email: nameOrEmail } });
+      await prisma.restaurant.findUnique({ where: { name: nameOrEmail } });
     if (!restaurant)
       return res.status(400).send("email or password is not correct");
     const passwordValidation = await bcrypt.compare(
@@ -25,7 +25,7 @@ const login = (router: Router) => {
       return res.status(400).send("email or password is not correct");
     const tokenObj = { id: restaurant.id, name: restaurant.name };
     const token = jwt.sign(tokenObj, process.env.jwtPrivateKey!);
-    res.send(token);
+    res.send({ token, user: tokenObj });
   });
 };
 

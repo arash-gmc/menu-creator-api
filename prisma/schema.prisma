@@ -17,7 +17,7 @@ model Restaurant {
   id          String  @id @default(cuid())
   name        String  @unique
   displayName String
-  email       String? @unique
+  email       String?
   password    String
   instagramId String?
   items       Item[]
@@ -26,6 +26,8 @@ model Restaurant {
 model Item {
   id           String     @id @default(cuid())
   name         String
+  description  String?
+  publicId     String?
   price        Int
   category     String
   restaurantId String

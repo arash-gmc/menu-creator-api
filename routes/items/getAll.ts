@@ -7,6 +7,7 @@ const getAll = (router: Router) => {
     if (!restaurantName) return res.status(400).send("not provided");
     const items = await prisma.item.findMany({
       where: { restaurant: { name: restaurantName } },
+      orderBy: { category: "asc" },
     });
     res.send(items);
   });

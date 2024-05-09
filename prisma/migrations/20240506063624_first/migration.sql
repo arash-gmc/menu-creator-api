@@ -16,6 +16,8 @@ CREATE TABLE `Restaurant` (
 CREATE TABLE `Item` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NULL,
+    `publicId` VARCHAR(191) NULL,
     `price` INTEGER NOT NULL,
     `category` VARCHAR(191) NOT NULL,
     `restaurantId` VARCHAR(191) NOT NULL,
