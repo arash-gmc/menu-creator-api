@@ -10,6 +10,10 @@ type AuthBody = z.infer<typeof authSchema>;
 const login = (router: Router) => {
   router.post("/login", async (req: Request, res: Response) => {
     const { nameOrEmail, password }: AuthBody = req.body;
+    if (!nameOrEmail || !password)
+      return res.status(400).send("not enough inputs");
+    if (typeof nameOrEmail !== "string" || typeof password !== "string")
+      return res.status(400).send("no valid input types");
     const restaurant = await prisma.restaurant.findUnique({
       where: { name: nameOrEmail },
     });
