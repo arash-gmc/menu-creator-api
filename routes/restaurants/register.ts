@@ -14,21 +14,21 @@ const register = (router: Router) => {
     validate(regSchema),
     async (req: Request, res: Response) => {
       const {
+        username,
         name,
-        displayName,
         password: rawPassword,
         email,
         instagramId,
       }: RegisterBody = req.body;
       const repeatedRecord = await prisma.restaurant.findUnique({
-        where: { name },
+        where: {  username },
       });
-      if (repeatedRecord) return res.status(400).send("repeated restaurant");
+      if (repeatedRecord) return res.status(400).send({message:'There is another restaurant with this username. please select another username.'});
       const hashedPassword = await bcrypt.hash(rawPassword, 10);
       const newUser = await prisma.restaurant.create({
         data: {
+          username,
           name,
-          displayName,
           password: hashedPassword,
           email,
           instagramId,
