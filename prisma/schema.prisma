@@ -32,6 +32,8 @@ model Item {
   photoPublicId String?
   price         Int
   category      String
+  offPercent    Int?
+  offDueDate    DateTime?
   restaurantId  String
   restaurant    Restaurant @relation(fields: [restaurantId], references: [id])
 }
