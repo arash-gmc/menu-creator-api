@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const restaurantRegisterationSchema = z.object({
-  name: z.string().min(3).max(255),
+  title: z.string().min(3).max(255),
   username: z.string().min(3).max(64),
   password: z.string().min(3).max(255),
   email: z.string().min(3).max(255).optional(),
@@ -30,7 +30,3 @@ export const editOneItemSchema = z.object({
 });
 
 export const editManyItemsSchema = z.array(editOneItemSchema);
-
-export const changePricesSchema = z.object({
-  percent: z.number().min(-50).max(100),
-});
