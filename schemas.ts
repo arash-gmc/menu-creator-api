@@ -13,15 +13,6 @@ export const authSchema = z.object({
   password: z.string().min(3).max(255),
 });
 
-export const addOneItemSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  price: z.number(),
-  category: z.string(),
-});
-
-export const addManyItemsSchema = z.array(addOneItemSchema);
-
 export const editOneItemSchema = z.object({
   id: z.string(),
   name: z.string().optional(),
