@@ -7,6 +7,7 @@ import changePrices from "./changePrices";
 import setDiscount from "./setDiscount";
 import removeAllDiscounts from "./removeAllDiscounts";
 import getCategories from "./getCategories";
+import deleteOne from "./deleteOne";
 
 const router = express.Router();
 getAll(router);
@@ -17,9 +18,6 @@ changePrices(router);
 setDiscount(router);
 removeAllDiscounts(router);
 getCategories(router);
-
-// router.put('/change-prices',async (req: Request, res: Response) =>{
-//   const {changePriceArray} = req.body
-// })
+deleteOne(router);
 
 export default router;
