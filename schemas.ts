@@ -12,12 +12,3 @@ export const authSchema = z.object({
   nameOrEmail: z.string().min(3).max(64),
   password: z.string().min(3).max(255),
 });
-
-export const editOneItemSchema = z.object({
-  id: z.string(),
-  name: z.string().optional(),
-  price: z.number().optional(),
-  category: z.string().optional(),
-});
-
-export const editManyItemsSchema = z.array(editOneItemSchema);

@@ -1,9 +1,6 @@
-import { Router, Request, Response } from "express";
-import prisma from "../../prisma/client";
+import { Request, Response, Router } from "express";
 import auth from "../../middlewares/auth";
-import { editOneItemSchema } from "../../schemas";
-import { z } from "zod";
-import inputValidation from "../../middlewares/validateInputs";
+import prisma from "../../prisma/client";
 import initialCategories from "./defaultCategories";
 
 const getCategories = (router: Router) => {

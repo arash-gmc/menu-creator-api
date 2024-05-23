@@ -1,9 +1,15 @@
 import { Router, Request, Response } from "express";
 import prisma from "../../prisma/client";
 import auth from "../../middlewares/auth";
-import { editOneItemSchema } from "../../schemas";
 import { z } from "zod";
 import inputValidation from "../../middlewares/validateInputs";
+
+const editOneItemSchema = z.object({
+  id: z.string(),
+  name: z.string().optional(),
+  price: z.number().optional(),
+  category: z.string().optional(),
+});
 
 type Body = z.infer<typeof editOneItemSchema>;
 
