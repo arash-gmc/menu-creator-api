@@ -1,17 +1,24 @@
 import { Router, Request, Response } from "express";
 import prisma from "../../prisma/client";
-import { restaurantRegisterationSchema as regSchema } from "../../schemas";
 import validate from "../../middlewares/validateInputs";
 import { z } from "zod";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-type RegisterBody = z.infer<typeof regSchema>;
+export const registerSchema = z.object({
+  title: z.string().min(3).max(255),
+  username: z.string().min(3).max(64),
+  password: z.string().min(3).max(255),
+  email: z.string().min(3).max(255).optional(),
+  instagramId: z.string().min(3).max(255).optional(),
+});
+
+type RegisterBody = z.infer<typeof registerSchema>;
 
 const register = (router: Router) => {
   router.post(
     "/register",
-    validate(regSchema),
+    validate(registerSchema),
     async (req: Request, res: Response) => {
       const {
         username,

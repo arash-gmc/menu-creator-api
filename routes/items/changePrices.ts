@@ -5,7 +5,7 @@ import { z } from "zod";
 import inputValidation from "../../middlewares/validateInputs";
 
 const changePricesSchema = z.object({
-  percent: z.number().min(-50).max(100),
+  percent: z.number().min(-100).max(100),
   category: z.string().optional(),
 });
 

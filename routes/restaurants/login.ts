@@ -1,9 +1,13 @@
 import { Router, Request, Response } from "express";
 import prisma from "../../prisma/client";
 import { z } from "zod";
-import { authSchema } from "../../schemas";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
+const authSchema = z.object({
+  nameOrEmail: z.string().min(3).max(64),
+  password: z.string().min(3).max(255),
+});
 
 type AuthBody = z.infer<typeof authSchema>;
 
