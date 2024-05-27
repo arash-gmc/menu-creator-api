@@ -14,8 +14,8 @@ datasource db {
 }
 
 model Restaurant {
-  id           String  @id @default(cuid())
-  username     String  @unique
+  id           String           @id @default(cuid())
+  username     String           @unique
   title        String
   email        String?
   password     String
@@ -23,6 +23,7 @@ model Restaurant {
   instagramId  String?
   phoneNumber  Int?
   items        Item[]
+  views        RestaurantView[]
 }
 
 model Item {
@@ -36,4 +37,12 @@ model Item {
   offDueDate    DateTime?
   restaurantId  String
   restaurant    Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
+model RestaurantView {
+  id           String     @id @default(cuid())
+  restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+  time         DateTime   @default(now())
+  interance    String?
 }
