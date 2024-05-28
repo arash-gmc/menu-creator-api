@@ -8,6 +8,7 @@ export const addOneItemSchema = z.object({
   name: z.string().min(1).max(255),
   description: z.string().optional(),
   price: z.number().min(0),
+  photoPublicId: z.string().nullable(),
   category: z.string().optional(),
 });
 
@@ -19,12 +20,12 @@ const add = (router: Router) => {
     auth,
     inputValidation(addOneItemSchema),
     async (req: Request, res: Response) => {
-      const { name, price: rawPrice, category, description }: Body = req.body;
+      const { name, price: rawPrice, category, description,photoPublicId }: Body = req.body;
       // @ts-ignore
       const restaurantId = req.payload.id as string;
       const price = Number(rawPrice);
       const newItem = await prisma.item.create({
-        data: { name, price, category, description, restaurantId },
+        data: { name, price, category, description, restaurantId,photoPublicId },
       });
       res.send(newItem);
     }
