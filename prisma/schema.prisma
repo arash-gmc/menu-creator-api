@@ -19,6 +19,7 @@ model Restaurant {
   title        String
   email        String?
   password     String
+  theme        String?
   logoPublicId String?
   instagramId  String?
   phoneNumber  Int?

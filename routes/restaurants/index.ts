@@ -5,6 +5,7 @@ import register from "./register";
 import getOneRestaurant from "./getOne";
 import addView from "./addView";
 import getViews from "./getViews";
+import changeTheme from "./changeTheme";
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ login(router);
 register(router);
 addView(router)
 getViews(router)
+changeTheme(router)
 
 export default router;

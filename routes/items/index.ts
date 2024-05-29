@@ -5,7 +5,7 @@ import addMany from "./addMany";
 import EditOne from "./editOne";
 import changePrices from "./changePrices";
 import setDiscount from "./setDiscount";
-import removeAllDiscounts from "./removeAllDiscounts";
+import removeAllDiscounts from "./clearDiscounts";
 import getCategories from "./getCategories";
 import deleteOne from "./deleteOne";
 
