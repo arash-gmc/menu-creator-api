@@ -12,6 +12,7 @@ export const registerSchema = z.object({
   email: z.string().min(3).max(255).optional(),
   instagramId: z.string().min(3).max(255).optional(),
   theme: z.string().min(3).max(255).optional(),
+  type: z.string().optional(),
 });
 
 type RegisterBody = z.infer<typeof registerSchema>;
@@ -27,7 +28,8 @@ const register = (router: Router) => {
         password: rawPassword,
         email,
         instagramId,
-        theme
+        theme,
+        type,
       }: RegisterBody = req.body;
       const repeatedRecord = await prisma.restaurant.findUnique({
         where: { username },
@@ -45,10 +47,16 @@ const register = (router: Router) => {
           password: hashedPassword,
           email,
           instagramId,
-          theme
+          theme,
+          type,
         },
       });
-      const tokenObj = { id: newUser.id, name: newUser.username };
+      const tokenObj = {
+        id: newUser.id,
+        name: newUser.username,
+        title: newUser.title,
+        type: newUser.type,
+      };
       const token = jwt.sign(tokenObj, process.env.jwtPrivateKey!);
       res.send({ user: tokenObj, token });
     }

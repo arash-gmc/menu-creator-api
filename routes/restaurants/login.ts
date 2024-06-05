@@ -37,7 +37,12 @@ const login = (router: Router) => {
       return res
         .status(400)
         .send({ message: "Username or password is not correct" });
-    const tokenObj = { id: restaurant.id, name: restaurant.username };
+    const tokenObj = {
+      id: restaurant.id,
+      name: restaurant.username,
+      title: restaurant.title,
+      type: restaurant.type,
+    };
     const token = jwt.sign(tokenObj, process.env.jwtPrivateKey!);
     res.send({ token, user: tokenObj });
   });

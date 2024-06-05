@@ -12,10 +12,13 @@ const getCategories = (router: Router) => {
       orderBy: { category: "asc" },
       select: { category: true },
     });
-    const noDefault = req.header("noDefault") === "true";
+    const lng = req.header("lng");
+    const type = req.header("type");
+    console.log(lng, type);
     const categories: string[] = [];
     const userCategories = fetched.map((item) => item.category);
-    const defaultCategories = noDefault ? [] : initialCategories();
+    const defaultCategories =
+      !type || !lng ? [] : initialCategories({ lng, type });
     [...userCategories, ...defaultCategories].forEach((item) => {
       if (item && !categories.includes(item)) categories.push(item);
     });

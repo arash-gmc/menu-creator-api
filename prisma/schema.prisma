@@ -17,6 +17,7 @@ model Restaurant {
   id           String           @id @default(cuid())
   username     String           @unique
   title        String
+  type         String?
   email        String?
   password     String
   theme        String?
