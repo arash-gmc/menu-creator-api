@@ -14,7 +14,6 @@ const getCategories = (router: Router) => {
     });
     const lng = req.header("lng");
     const type = req.header("type");
-    console.log(lng, type);
     const categories: string[] = [];
     const userCategories = fetched.map((item) => item.category);
     const defaultCategories =
