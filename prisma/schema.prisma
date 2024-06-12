@@ -23,7 +23,9 @@ model Restaurant {
   theme        String?
   logoPublicId String?
   instagramId  String?
-  phoneNumber  Int?
+  phoneNumber  String?
+  dateJoined   DateTime?        @default(now())
+  hidePrices   Boolean          @default(false)
   items        Item[]
   views        RestaurantView[]
 }

@@ -9,8 +9,10 @@ export const registerSchema = z.object({
   title: z.string().min(3).max(255),
   username: z.string().min(3).max(64),
   password: z.string().min(3).max(255),
+  logoPublicId: z.string().min(1).max(255),
   email: z.string().min(3).max(255).optional(),
-  instagramId: z.string().min(3).max(255).optional(),
+  instagramId: z.string().max(255).optional(),
+  phoneNumber: z.string().optional(),
   theme: z.string().min(3).max(255).optional(),
   type: z.string().optional(),
 });
@@ -30,6 +32,8 @@ const register = (router: Router) => {
         instagramId,
         theme,
         type,
+        logoPublicId,
+        phoneNumber,
       }: RegisterBody = req.body;
       const repeatedRecord = await prisma.restaurant.findUnique({
         where: { username },
@@ -45,6 +49,7 @@ const register = (router: Router) => {
           username,
           title,
           password: hashedPassword,
+          logoPublicId,
           email,
           instagramId,
           theme,
